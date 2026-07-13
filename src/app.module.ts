@@ -4,6 +4,7 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { EstacoesModule } from './estacoes/estacoes.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { join } from 'path';
       ],
       migrationsRun: true
     }),
-    UsuarioModule
+    UsuarioModule,
+    EstacoesModule
   ],
   providers: [AppService],
 })
