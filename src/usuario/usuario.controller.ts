@@ -1,16 +1,17 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Param, Post, Put, Query } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { UsuarioRequestDto } from './dto/usuario_request.dto';
+import { UsuarioEditarRequestDto } from './dto/usuario_editar_request.dto';
 
 @Controller('usuarios')
 export class UsuarioController {
 
     constructor(private readonly usuarioService: UsuarioService){}
 
-    //http://localhost:3000/usuarios/
+    //http://localhost:3000/usuarios
     @Get()
     carregarUsuarios() {
-        return this.usuarioService.todosUsuarios()
+        return this.usuarioService.carregarTodosUsuarios()
     }
 
     //http://localhost:3000/usuarios/buscar/jose@mail.com
@@ -21,13 +22,20 @@ export class UsuarioController {
 
     //http://localhost:3000/usuarios/consultar?email=jose@mail.com
     @Get("/consultar")
-    carregarUsuarioPorQuery(@Query("email") email:string) {
-        return this.usuarioService.buscarUsuarioPorEmail(email)
+    async carregarUsuarioPorQuery(@Query("email") email:string) {
+        return await this.usuarioService.buscarEmailUsandoPorPalavra(email)
     }
 
     //http://localhost:3000/usuarios
     @Post()
-    addUsuario(@Body() request: UsuarioRequestDto){
-        this.usuarioService.novoUsuario(request)
+    async addUsuario(@Body() request: UsuarioRequestDto):Promise<void> {
+        await this.usuarioService.novoUsuario(request)
+    }
+    // http://localhost:3000/usuarios/editar/erqrwer9542-35-3425    
+    @Put("/editar/:id")
+    @HttpCode(204)
+    async editarUsuarioCadastrado(@Param("id") idUsuario: string, 
+        @Body() request: UsuarioEditarRequestDto):Promise<void>{
+            await this.usuarioService.atualizarUsuario(idUsuario, request)
     }
 }

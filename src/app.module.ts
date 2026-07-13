@@ -18,6 +18,7 @@ import { join } from 'path';
       username: "postgres",
       password: "102030",
       database: "pedaladbt",
+      autoLoadEntities: true,
       migrations: [
         join(__dirname,'migrations', '*{.ts,.js}'),
       ],
