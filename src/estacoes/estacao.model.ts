@@ -13,5 +13,5 @@ export class EstacaoModel {
     capacidade: number
 
     @Column()
-    ativa: boolean
+    ativo: boolean
 }
