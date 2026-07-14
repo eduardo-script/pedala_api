@@ -40,10 +40,9 @@ export class EstacoesService {
     : Promise<EstacaoModel[]>{
         const estacoes = await this.estacaoRepository.find({
             where: {  
-                nomeEstacao: ILike(`${query}%`)
+                nomeEstacao: ILike(`%${query}%`)
             }
         })
-
         return estacoes
     }
 }
