@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nest
 import { MarcaService } from './marca.service';
 import { MarcaModel } from './marca.model';
 
-@Controller('marcas')
+@Controller("marcas")
 export class MarcaController {
     constructor(
         private readonly marcaService: MarcaService

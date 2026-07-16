@@ -7,6 +7,7 @@ import { MarcaModel } from './marca.model';
 @Module({
   imports: [TypeOrmModule.forFeature([MarcaModel])],
   controllers: [MarcaController],
-  providers: [MarcaService]
+  providers: [MarcaService],
+  exports: [MarcaService]
 })
 export class MarcaModule {}
