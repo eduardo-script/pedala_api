@@ -5,6 +5,8 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { EstacoesModule } from './estacoes/estacoes.module';
+import { MarcaModule } from './marca/marca.module';
+import { ModeloModule } from './modelo/modelo.module';
 
 @Module({
   imports: [
@@ -26,7 +28,9 @@ import { EstacoesModule } from './estacoes/estacoes.module';
       migrationsRun: true
     }),
     UsuarioModule,
-    EstacoesModule
+    EstacoesModule,
+    MarcaModule,
+    ModeloModule
   ],
   providers: [AppService],
 })
