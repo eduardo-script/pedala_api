@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
 import { MarcaService } from './marca.service';
 import { MarcaModel } from './marca.model';
+import { MarcaRequestDto } from './dto/marca_request.dto';
 
 @Controller("marcas")
 export class MarcaController {
@@ -9,7 +10,7 @@ export class MarcaController {
     ){}
 
     @Post()
-    async addMarca(@Body() data: {nome: string, url: string})
+    async addMarca(@Body() data: MarcaRequestDto)
         :Promise<void> {
         await this.marcaService.addMarca(data)
     }

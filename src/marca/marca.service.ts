@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MarcaModel } from './marca.model';
 import { Repository } from 'typeorm';
+import { MarcaRequestDto } from './dto/marca_request.dto';
 
 @Injectable()
 export class MarcaService {
@@ -10,7 +11,7 @@ export class MarcaService {
         private readonly marcaRepository: Repository<MarcaModel>
     ){}
 
-    async addMarca(data: {nome:string, url: string}): Promise<void> {
+    async addMarca(data: MarcaRequestDto): Promise<void> {
         const existeMarca = await this.marcaRepository
             .findOneBy({ nome: data.nome })
 
@@ -18,7 +19,9 @@ export class MarcaService {
             BadRequestException(`Marca já registrada com 
                                                 este nome ${data.nome}`)
         const marca = this.marcaRepository
-                        .create({ nome: data.nome, urlImagem: data.url})
+                        .create({ nome: data.nome, 
+                            urlImagem: data.url ? data.url : "https://thumbs.dreamstime.com/b/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available-236105299.jpg"
+                        })
         await this.marcaRepository.save(marca)    
     }
 
