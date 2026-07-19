@@ -3,6 +3,8 @@ import { ModeloService } from './modelo.service';
 import { ModeloRequestDto } from './dto/modelo_request.dto';
 import { ModeloModel } from './modelo.model';
 
+// http://localhost:3000/
+
 @Controller('modelos')
 export class ModeloController {
     constructor(

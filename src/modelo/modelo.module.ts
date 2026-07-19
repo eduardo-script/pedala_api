@@ -8,6 +8,7 @@ import { ModeloModel } from './modelo.model';
 @Module({
   imports: [TypeOrmModule.forFeature([ModeloModel]), MarcaModule],
   providers: [ModeloService],
-  controllers: [ModeloController]
+  controllers: [ModeloController],
+  exports: [ModeloService]
 })
 export class ModeloModule {}

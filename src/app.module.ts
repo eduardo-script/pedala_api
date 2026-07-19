@@ -7,6 +7,7 @@ import { join } from 'path';
 import { EstacoesModule } from './estacoes/estacoes.module';
 import { MarcaModule } from './marca/marca.module';
 import { ModeloModule } from './modelo/modelo.module';
+import { BicicletaModule } from './bicicleta/bicicleta.module';
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import { ModeloModule } from './modelo/modelo.module';
     UsuarioModule,
     EstacoesModule,
     MarcaModule,
-    ModeloModule
+    ModeloModule,
+    BicicletaModule
   ],
   providers: [AppService],
 })
