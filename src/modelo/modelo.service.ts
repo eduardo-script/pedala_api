@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ModeloModel } from './modelo.model';
 import { Repository } from 'typeorm';
@@ -38,5 +38,16 @@ export class ModeloService {
                 marca: true
             }
         })
+    }
+
+    async carregarModeloPeloId(modeloId: string): Promise<ModeloModel> {
+        const modelo = await this.modeloRepository.findOneBy({
+            id: modeloId
+        })
+
+        if(!modelo) 
+            throw new NotFoundException("Nenhum modelo encontrado com este id")
+
+        return modelo
     }
 }
