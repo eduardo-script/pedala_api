@@ -1,14 +1,18 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { BicicletaService } from './bicicleta.service';
+import { BicicletaRequestDto } from './dto/bicicleta_request.dto';
 
-@Controller('bicicleta')
+@Controller('bicicletas')
 export class BicicletaController {
 
-    // - Cadastrar uma nova bicicleta informando o Id do modelo e estacao
-    // - Deverá validar a capacidade de bicicletas por estações e se a estação esta ativa
-    // realizar uma contagem de bicicletas por estacao -- usar count
-    // - Carregar todas as bicicletas da estacação com informando o id da bicicleta, 
-    // modelos, marca e a estação lotada
-    // - Buscar as bibicleta pela estação
+    constructor(
+        private readonly bicicletaService: BicicletaService
+    ){}
+
+    @Post()
+    async cadastrarBicicleta(@Body() request: BicicletaRequestDto):Promise<void> {
+        await this.bicicletaService.addBicicleta(request)
+    }
 }
 
 

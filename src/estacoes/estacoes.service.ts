@@ -26,7 +26,7 @@ export class EstacoesService {
         const estacao = this.estacaoRepository.create({
             nomeEstacao: request.nomeEstacao,
             capacidade: request.capacidade,
-            ativo: request.ativa
+            ativo: true
         })        
 
         await this.estacaoRepository.save(estacao)

@@ -21,11 +21,16 @@ export class BicicletaService {
             .carregarModeloPeloId(request.modeloId)
         const lotacao = await this.estacaoService
             .buscarEstacaoPorId(request.estacaoId)
+        
+        // validar a quantidade de bicicleta na estação
+        // caso a quantidade exceda a capacidade lançar um exeção
         // criar o objeto de bicicleta
         const bicicleta = this.bicicletaRepository.create({
             modelo,
             lotacao
         })
+
+
         // salvar bicicleta
         await this.bicicletaRepository.save(bicicleta)
     }
